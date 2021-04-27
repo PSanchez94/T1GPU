@@ -1,0 +1,4 @@
+[submodule "GeometryTest/googletest"]
+	path = GeometryTest/googletest
+	url = https://github.com/google/googletest
+	branch = master
