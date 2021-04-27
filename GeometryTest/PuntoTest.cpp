@@ -4,9 +4,3 @@
 @author: Pablo Sanchez
 /**/
 
-#include <iostream>
-
-int main() {
-
-    return 0;
-}
