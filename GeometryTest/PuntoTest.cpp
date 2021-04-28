@@ -24,16 +24,21 @@ protected:
 };
 
 
-TEST_F(PuntoTest, TestDefaultFloatConstructor) {
-    ASSERT_EQ(_float_punto.getX(), 0);
-    ASSERT_EQ(_float_punto.getY(), 0);
+TEST_F(PuntoTest, TestFloatDefaultConstructor) {
+    EXPECT_EQ(_float_punto.getX(), 0);
+    EXPECT_EQ(_float_punto.getY(), 0);
+}
+
+TEST_F(PuntoTest, TestFloatType) {
+    EXPECT_EQ(typeid(float), typeid(_float_punto.getX()));
+    EXPECT_EQ(typeid(float), typeid(_float_punto.getY()));
 }
 
 TEST_F(PuntoTest, TestFloatConstructorWithValues) {
     Punto<float> float_punto = Punto<float>(10.0, 10.0);
 
-    ASSERT_EQ(float_punto.getX(), 10.0);
-    ASSERT_EQ(float_punto.getY(), 10.0);
+    EXPECT_EQ(float_punto.getX(), 10.0);
+    EXPECT_EQ(float_punto.getY(), 10.0);
 }
 
 TEST_F(PuntoTest, TestFloatConstructorWithVariables) {
@@ -42,6 +47,26 @@ TEST_F(PuntoTest, TestFloatConstructorWithVariables) {
 
     Punto<float> float_punto = Punto<float>(x, y);
 
-    ASSERT_EQ(float_punto.getX(), x);
-    ASSERT_EQ(float_punto.getY(), y);
+    EXPECT_EQ(float_punto.getX(), x);
+    EXPECT_EQ(float_punto.getY(), y);
 }
+
+TEST_F(PuntoTest, TestFloatSettersWithValues) {
+    _float_punto.setX(10.0);
+    _float_punto.setY(10.0);
+
+    EXPECT_EQ(_float_punto.getX(), 10.0);
+    EXPECT_EQ(_float_punto.getY(), 10.0);
+}
+
+TEST_F(PuntoTest, TestFloatSettersWithVariables) {
+    float x = 10.0;
+    float y = 10.0;
+
+    _float_punto.setX(x);
+    _float_punto.setY(y);
+
+    EXPECT_EQ(_float_punto.getX(), x);
+    EXPECT_EQ(_float_punto.getY(), y);
+}
+

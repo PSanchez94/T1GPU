@@ -23,7 +23,9 @@ public:
     numType getX() { return x; }
     numType getY() { return y; }
 
-    // TODO: Do we need setters?
+    // Setters
+    numType setX(numType in_x) { x = in_x; }
+    numType setY(numType in_y) { y = in_y; }
 };
 
 
