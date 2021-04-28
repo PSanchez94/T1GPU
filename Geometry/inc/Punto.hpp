@@ -28,24 +28,45 @@ public:
     // Setters
     void setX(numType in_x) { x = in_x; }
     void setY(numType in_y) { y = in_y; }
+    void setXY(numType in_x, numType in_y) { setX(in_x); setY(in_y); }
+
 
     // Equal operators
     bool operator==(const Punto<numType> &rp) const {
-        return (this->getX() == rp.getX()) && (this->getY() == rp.getY());
+        return (this->x == rp.getX()) && (this->y == rp.getY());
     }
 
     bool operator!=(const Punto<numType> &p) const {
         return !(*this == p);
     }
 
-    // Sum operator
-    /*
-    Punto<numType> operator+(Punto<numType> p) {
-        return ;
+    // Sum point operator
+    Punto<numType> operator+(const Punto<numType> &p) {
+        x += p.getX();
+        y += p.getY();
+        return *this;
     }
-    /**/
 
-    // Substraction operator
+    // Sum scalar operator
+    Punto<numType> operator+(numType &n) {
+        x += n;
+        y += n;
+        return *this;
+    }
+
+    // Subtraction point operator
+    Punto<numType> operator-(const Punto<numType> &p) {
+        x -= p.getX();
+        y -= p.getY();
+        return *this;
+    }
+
+    // Subtraction scalar operator
+    Punto<numType> operator-(numType &n) {
+        x -= n;
+        y -= n;
+        return *this;
+    }
 };
 
 
