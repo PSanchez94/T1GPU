@@ -6,9 +6,8 @@
 #ifndef PUNTO_HPP
 #define PUNTO_HPP
 
-#include <iostream>
-
 #include "TwoDPoint.hpp"
+
 
 /*
 Class implementation of a point in two dimensions, X and Y.
@@ -18,8 +17,10 @@ class Punto : public TwoDPoint<numType> {
     using TwoDPoint<numType>::x;
     using TwoDPoint<numType>::y;
 
+
 private:
     typedef TwoDPoint<numType> inherited;
+
 
 public:
     // Constructors
@@ -38,7 +39,6 @@ public:
         return *this;
     }
 
-
     // Subtraction point operator
     Punto<numType> operator-(const Punto<numType> &p) {
         x -= p.getX(); y -= p.getY();
@@ -50,7 +50,6 @@ public:
         x -= n; y -= n;
         return *this;
     }
-
 
     // Multiplication by scalar operator
     Punto<numType> operator*(const numType &n) {

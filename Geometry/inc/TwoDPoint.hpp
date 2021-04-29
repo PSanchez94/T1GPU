@@ -4,13 +4,15 @@
 @author: Pablo Sanchez
 /**/
 
-#ifndef TwoDPOINT_HPP
-#define TwoDPOINT_HPP
+#ifndef TWODPOINT_HPP
+#define TWODPOINT_HPP
+
 
 template <class numType>
 class TwoDPoint {
 protected:
     numType x, y;
+
 
 public:
     // Constructors
@@ -19,7 +21,6 @@ public:
 
     // Destructor
     ~TwoDPoint() = default;
-
 
     // Getters
     numType getX() const { return x; }
@@ -30,7 +31,6 @@ public:
     void setY(numType in_y) { y = in_y; }
     void setXY(numType in_x, numType in_y) { setX(in_x); setY(in_y); }
 
-
     // Equal operators
     bool operator==(const TwoDPoint<numType> &rp) const {
         return (this->x == rp.getX()) && (this->y == rp.getY());
@@ -39,7 +39,6 @@ public:
     bool operator!=(const TwoDPoint<numType> &p) const {
         return !(*this == p);
     }
-
 
     // cin operator
     friend std::istream &operator>>( std::istream  &input, TwoDPoint<numType> &p ) {
@@ -54,4 +53,5 @@ public:
     }
 };
 
-#endif //TwoDPOINT_HPP
+
+#endif //TWODPOINT_HPP

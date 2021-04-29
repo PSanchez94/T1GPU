@@ -4,7 +4,8 @@ project(GeometryTest)
 set(CMAKE_CXX_STANDARD 11)
 
 set(Sources
-        PuntoFloatTest.cpp)
+        PuntoFloatTest.cpp
+        VectorFloatTest.cpp)
 
 add_subdirectory(googletest)
 
