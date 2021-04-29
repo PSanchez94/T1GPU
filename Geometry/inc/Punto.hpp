@@ -48,7 +48,7 @@ public:
         return *this;
     }
 
-    // Sum scalar operator
+    // Sum by scalar operator
     Punto<numType> operator+(const numType &n) {
         x += n; y += n;
         return *this;
@@ -73,8 +73,19 @@ public:
     }
 
     // cin operator
+    friend std::istream &operator>>( std::istream  &input, Punto<numType> &p ) {
+        input >> p.x >> p.y;
+        return input;
+    }
 
     // cout operator
+    friend std::ostream &operator<<( std::ostream &output, const Punto<numType> &p ) {
+        output << "Punto: X: " << p.x << ", Y: " << p.y << std::endl;
+        return output;
+    }
+
+
+
 
 
 };

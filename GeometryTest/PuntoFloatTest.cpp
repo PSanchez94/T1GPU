@@ -128,3 +128,21 @@ TEST_F(PuntoFloatTest, TestMultPointAndScalar) {
 
     EXPECT_EQ(_actual_float_punto * a_float, _expected_float_punto);
 }
+
+TEST_F(PuntoFloatTest, TestFloatCout) {
+    _actual_float_punto.setXY(15.0, 15.0);
+
+    testing::internal::CaptureStdout();
+    std::cout << _actual_float_punto;
+
+    EXPECT_EQ(testing::internal::GetCapturedStdout(), "Punto: X: 15, Y: 15\n");
+}
+
+TEST_F(PuntoFloatTest, TestFloatCin) {
+    _expected_float_punto.setXY(10.0, 10.0);
+
+    std::istringstream in("10.0 10.0");
+    in >> _actual_float_punto;
+
+    EXPECT_EQ(_actual_float_punto, _expected_float_punto);
+}
