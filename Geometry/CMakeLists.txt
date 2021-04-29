@@ -4,6 +4,7 @@ project(Geometry)
 set(CMAKE_CXX_STANDARD 11)
 
 set(Headers
+        inc/TwoDPoint.hpp
         inc/Punto.hpp
         )
 
