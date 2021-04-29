@@ -21,6 +21,9 @@ public:
     Punto() : x(0), y(0) { };
     Punto(numType x, numType y) : x(x), y(y) { };
 
+    // Destructor
+    ~Punto() = default;
+
     // Getters
     numType getX() const { return x; }
     numType getY() const { return y; }
@@ -29,7 +32,6 @@ public:
     void setX(numType in_x) { x = in_x; }
     void setY(numType in_y) { y = in_y; }
     void setXY(numType in_x, numType in_y) { setX(in_x); setY(in_y); }
-
 
     // Equal operators
     bool operator==(const Punto<numType> &rp) const {
@@ -42,31 +44,39 @@ public:
 
     // Sum point operator
     Punto<numType> operator+(const Punto<numType> &p) {
-        x += p.getX();
-        y += p.getY();
+        x += p.getX(); y += p.getY();
         return *this;
     }
 
     // Sum scalar operator
-    Punto<numType> operator+(numType &n) {
-        x += n;
-        y += n;
+    Punto<numType> operator+(const numType &n) {
+        x += n; y += n;
         return *this;
     }
 
     // Subtraction point operator
     Punto<numType> operator-(const Punto<numType> &p) {
-        x -= p.getX();
-        y -= p.getY();
+        x -= p.getX(); y -= p.getY();
         return *this;
     }
 
-    // Subtraction scalar operator
-    Punto<numType> operator-(numType &n) {
-        x -= n;
-        y -= n;
+    // Subtraction by scalar operator
+    Punto<numType> operator-(const numType &n) {
+        x -= n; y -= n;
         return *this;
     }
+
+    // Multiplication by scalar operator
+    Punto<numType> operator*(const numType &n) {
+        x *= n; y *= n;
+        return *this;
+    }
+
+    // cin operator
+
+    // cout operator
+
+
 };
 
 

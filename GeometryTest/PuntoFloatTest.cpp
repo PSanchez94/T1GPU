@@ -119,3 +119,12 @@ TEST_F(PuntoFloatTest, TestSubtractPointAndScalar) {
 
     EXPECT_EQ(_actual_float_punto - a_float, _expected_float_punto);
 }
+
+TEST_F(PuntoFloatTest, TestMultPointAndScalar) {
+    _expected_float_punto.setXY(10.0, 10.0);
+    float a_float = 2.0;
+
+    _actual_float_punto.setXY(5.0, 5.0);
+
+    EXPECT_EQ(_actual_float_punto * a_float, _expected_float_punto);
+}
