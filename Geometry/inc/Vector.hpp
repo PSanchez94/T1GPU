@@ -13,7 +13,9 @@
 
 
 /*
-Class implementation of a point in two dimensions, X and Y.
+Class implementation of a vector in two dimensions, X and Y.
+The vector is designed to always be normalized.
+The vector (0,0) is defined.
 /**/
 template <class numType>
 class Vector : public TwoDPoint<numType> {
@@ -44,7 +46,7 @@ public:
         normalize();
     }
 
-    // Setters
+    // Setter
     void setXY(numType in_x, numType in_y) {
         x = in_x;  y = in_y;
         normalize();
@@ -68,12 +70,10 @@ public:
         return (x * v->x) + (y * v->y);
     };
 
-    /*
     // Producto cruz
     numType prodCruz(Vector<numType> *v) {
         return (x * v->Y) - (y * v->X);
     };
-    /**/
 };
 
 

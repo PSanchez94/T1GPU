@@ -7,7 +7,10 @@
 #ifndef TWODPOINT_HPP
 #define TWODPOINT_HPP
 
-
+/*
+Abstract class for implementation of a point in two dimensions, X and Y.
+Defines X, Y, getters and equal operators.
+/**/
 template <class numType>
 class TwoDPoint {
 protected:
