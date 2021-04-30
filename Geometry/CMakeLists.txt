@@ -7,6 +7,7 @@ set(Headers
         inc/TwoDPoint.hpp
         inc/Punto.hpp
         inc/Vector.hpp
+        inc/Poligono.hpp
         )
 
 include_directories(${PROJECT_SOURCE_DIR}/inc)

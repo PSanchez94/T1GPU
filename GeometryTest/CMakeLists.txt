@@ -5,7 +5,9 @@ set(CMAKE_CXX_STANDARD 11)
 
 set(Sources
         PuntoFloatTest.cpp
-        VectorFloatTest.cpp)
+        VectorFloatTest.cpp
+        PoligonoListFloatTest.cpp
+        PoligonoFloatTest.cpp)
 
 add_subdirectory(googletest)
 
