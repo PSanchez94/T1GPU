@@ -92,9 +92,5 @@ TEST_F(VectorFloatTest, TestFloatProductoPunto) {
     _actual_float_vector.setXY(1.0, 1.0);
     rpunto = Punto<float>(-1.0, -1.0);
     Vector<float> in_float_vector = Vector<float>(&lpunto, &rpunto);
-    std::cout << _actual_float_vector;
-    std::cout << in_float_vector;
     EXPECT_FLOAT_EQ(_actual_float_vector.prodPunto(&in_float_vector), -1.0);
 }
-
-/**/

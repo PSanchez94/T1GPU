@@ -12,6 +12,7 @@
 
 template <class numType>
 class PoligonoList {
+    int size;
 
     struct Node {
         Punto<numType> *p;
@@ -20,7 +21,13 @@ class PoligonoList {
 
         explicit Node(Punto<numType> *p) : p(p), next(nullptr), prev(nullptr) { }
 
-        // cout operator
+        // Destructor, deletes the next node recursively until it finds a nullptr.
+        ~Node() {
+            if (next != nullptr) { delete next; }
+            free(this);
+        }
+
+        // cout operator.
         friend std::ostream &operator<<( std::ostream &output, const Node &n ) {
             output << "Node: " << *n.p
             << "Next node: " << *n.next->p
@@ -30,9 +37,8 @@ class PoligonoList {
     };
 
     Node *head;
-    int size;
-    // Node* tail; // Do I need a tail?
 
+    // Adds a Punto next of input node n.
     void addPunto(Punto<numType> *p, Node *n) {
         Node *new_node = new Node(p);
 
@@ -43,7 +49,22 @@ class PoligonoList {
         n->next = new_node;
     }
 
+    /*
+    // Removes a node. If the node is the head, it declares its next node as the head.
+    void removePunto(Node *n) {
+        if (size>3) {
+            if (n==head) {
+                head = n->next;
+            }
+            n->prev->next = n->next;
+            n->next->prev = n->prev;
+            free(n);
+        }
+    }
+    /**/
+
 public:
+    // Constructor. A Poligono should only be initialized with 3 Puntos.
     PoligonoList(Punto<numType> *lp, Punto<numType> *mp, Punto<numType> *rp) {
         head = new Node(lp);
         head->next = new Node(mp);
@@ -52,10 +73,17 @@ public:
         head->prev = head->next;
 
         addPunto(rp, head->prev);
-
         size = 3;
     }
 
+    // Destructor, breaks circularity and then calls head's destructor.
+    ~PoligonoList() {
+        head->prev->next = nullptr;
+        delete head;
+        free(this);
+    }
+
+    // Public addPunto method. Adds a Punto to the end of the list.
     void addPunto(Punto<numType> *p) {
         addPunto(p, head->prev);
         size++;
@@ -63,33 +91,7 @@ public:
 
     Node* getHead() const { return head;}
     int getSize() const { return size;}
-
-    /*
-    void addPoint(Point<numType> *p) {
-        new Node(InitData)
-        newNode.next  := node.next
-    }
-
-
-    insert(Node node, Node newNode)
-    newNode.next  := node.next
-    newNode.prev  := node
-    node.next.prev  := newNode
-    node.next       := newNod
-    /**/
-
-    /*
-    void empty(void) {
-        head->prev->next = nullptr; // Break forward-circularity.
-        head->delete(); // Call recursive deleter.
-    }
-
-    void delete(void) {
-        if(next != nullptr) next->delete();
-        delete this;
-    }
-    /**/
-
 };
-/**/
+
+
 #endif //POLIGONO_HPP
