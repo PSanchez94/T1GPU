@@ -27,6 +27,11 @@ public:
     using TwoDPoint<numType>::TwoDPoint;
     ~Punto() = default;
 
+    // Setters
+    void setX(numType in_x) { x = in_x; }
+    void setY(numType in_y) { y = in_y; }
+    void setXY(numType in_x, numType in_y) { setX(in_x); setY(in_y); }
+
     // Sum point operator
     Punto<numType> operator+(const Punto<numType> &p) {
         x += p.getX(); y += p.getY();

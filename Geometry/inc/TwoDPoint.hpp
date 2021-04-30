@@ -27,9 +27,7 @@ public:
     numType getY() const { return y; }
 
     // Setters
-    void setX(numType in_x) { x = in_x; }
-    void setY(numType in_y) { y = in_y; }
-    void setXY(numType in_x, numType in_y) { setX(in_x); setY(in_y); }
+    virtual void setXY(numType in_x, numType in_y) { };
 
     // Equal operators
     bool operator==(const TwoDPoint<numType> &rp) const {

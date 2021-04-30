@@ -45,10 +45,8 @@ public:
     }
 
     // Setters
-    void setX(numType in_x) { }
-    void setY(numType in_y) { }
     void setXY(numType in_x, numType in_y) {
-        inherited::setX(in_x); inherited::setY(in_y);
+        x = in_x;  y = in_y;
         normalize();
     }
 
