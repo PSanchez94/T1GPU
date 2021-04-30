@@ -83,14 +83,69 @@ public:
         free(this);
     }
 
+    Node* getHead() const { return head;}
+    int getSize() const { return size;}
+
     // Public addPunto method. Adds a Punto to the end of the list.
     void addPunto(Punto<numType> *p) {
         addPunto(p, head->prev);
         size++;
     }
 
-    Node* getHead() const { return head;}
-    int getSize() const { return size;}
+    // Calculates the determinant given two Puntos.
+    numType edgeDet(Punto<numType> *lp, Punto<numType> *rp) {
+        return (rp->getX() - lp->getX()) * (rp->getY() + lp->getY());
+    }
+
+    // Calculates the orientation determinant for the PoligonoList.
+    numType orientationDet() {
+        // Calculate for head edge first.
+        numType result = edgeDet(head->p, head->next->p);
+        Node* curr_node=head->next;
+
+        // Calculate for the rest of the edges.
+        while (curr_node != head) {
+            result += edgeDet(curr_node, curr_node->next);
+            curr_node = curr_node->next;
+        }
+
+        return result;
+    }
+};
+
+
+template <class numType>
+class Poligono {
+    PoligonoList<numType> poligono_list;
+    numType orientationDet;
+
+public:
+    // Constructor
+    Poligono(Punto<numType> *lp, Punto<numType> *mp, Punto<numType> *rp) {
+        poligono_list = PoligonoList<float>(lp, mp, rp);
+        orientationDet = poligono_list.orientationDet();
+    }
+
+    // Destructor
+    ~Poligono() {
+        delete poligono_list;
+        free(this);
+    }
+
+    void addPunto(Punto<numType> *p) {
+        poligono_list.addPunto(p);
+        orientationDet = poligono_list.orientationDet();
+    }
+
+    // Getter
+    PoligonoList<numType> getList() { return poligono_list; }
+
+    // Boolean if Poligono is clockwise or counterclockwise.
+    bool isCCW() { (orientationDet < 0) ? true : false; }
+
+    // Provides the area of the Poligono.
+    numType area() { return abs(orientationDet)*0.5; }
+
 };
 
 
