@@ -25,8 +25,12 @@ private:
 
     // Normalize
     void normalize() {
-        numType length = sqrt(x*x + y*y);
-        x /= length; y /= length;
+        // The following conditional allows a vector in (0,0) rather than
+        // The former (nan, nan) result.
+        if (!((x == 0) && (y == 0))) {
+            numType length = sqrt(x*x + y*y);
+            x /= length; y /= length;
+        }
     }
 
 public:
@@ -40,18 +44,33 @@ public:
         normalize();
     }
 
+    // Setters
+    void setX(numType in_x) { }
+    void setY(numType in_y) { }
+    void setXY(numType in_x, numType in_y) {
+        inherited::setX(in_x); inherited::setY(in_y);
+        normalize();
+    }
+
+    // cin operator
+    friend std::istream &operator>>( std::istream  &input, Vector<numType> &v ) {
+        input >> v.x >> v.y;
+        v.normalize();
+        return input;
+    }
+
     // cout operator
     friend std::ostream &operator<<( std::ostream &output, const Vector<numType> &v ) {
         output << "Vector: " << "X: " << v.x << ", Y: " << v.y << std::endl;
         return output;
     }
 
-    /*
     // Producto punto
     numType prodPunto(Vector<numType> *v) {
-        return (x * v->X) + (y * v->Y);
+        return (x * v->x) + (y * v->y);
     };
 
+    /*
     // Producto cruz
     numType prodCruz(Vector<numType> *v) {
         return (x * v->Y) - (y * v->X);
