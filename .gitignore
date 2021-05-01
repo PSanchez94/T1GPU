@@ -95,4 +95,4 @@ _deps
 ### CLion template
 
 cmake-build-*/
-.idea/
+#.idea/
