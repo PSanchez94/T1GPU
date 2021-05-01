@@ -161,6 +161,14 @@ public:
     // Provides the area of the Poligono.
     numType area() const { return abs(orientationDet)*0.5; }
 
+    // cin operator
+    friend std::istream &operator>>( std::istream  &input, Poligono<numType> &p ) {
+        Punto<numType>* new_point = new Punto<numType>();
+        input >> *new_point;
+        p.addPunto(new_point);
+        return input;
+    }
+
     // cout operator
     friend std::ostream &operator<<( std::ostream &output, const Poligono<numType> &p ) {
         output << "Poligono. " << std::endl;
