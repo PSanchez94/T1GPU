@@ -91,6 +91,21 @@ public:
     Node* getHead() const { return head;}
     int getSize() const { return size;}
 
+    // cout operator
+    friend std::ostream &operator<<( std::ostream &output, const PoligonoList<numType> &p ) {
+        output << "Puntos: (" << p.head->p->getX() << ", " << p.head->p->getY() << ")";
+
+        Node* curr_node=p.head->next;
+        // Calculate for the rest of the edges.
+        while (curr_node != p.head) {
+            output << ", (" << curr_node->p->getX() << ", " << curr_node->p->getY() << ")";
+            curr_node = curr_node->next;
+        }
+
+        output << std::endl;
+        return output;
+    }
+
     // Public addPunto method. Adds a Punto to the end of the list.
     void addPunto(Punto<numType> *p) {
         addPunto(p, head->prev);
@@ -138,14 +153,29 @@ public:
     }
 
     // Getter
-    PoligonoList<numType> getList() { return poligono_list; }
+    PoligonoList<numType>* getList() const { return poligono_list; }
 
     // Boolean if Poligono is clockwise or counterclockwise.
-    bool isCCW() { return (orientationDet < 0) ? true : false; }
+    bool isCCW() const { return (orientationDet < 0) ? true : false; }
 
     // Provides the area of the Poligono.
-    numType area() { return abs(orientationDet)*0.5; }
+    numType area() const { return abs(orientationDet)*0.5; }
 
+    // cout operator
+    friend std::ostream &operator<<( std::ostream &output, const Poligono<numType> &p ) {
+        output << "Poligono. " << std::endl;
+        output << "Number of Puntos: " << p.getList()->getSize() << std::endl;
+        output << *p.getList();
+        output << "isCCW: ";
+        if (p.isCCW()) {
+            output << "Yes";
+        } else {
+            output << "No";
+        }
+        output << std::endl;
+        output << "Area: " << p.area() << std::endl;
+        return output;
+    }
 };
 
 
