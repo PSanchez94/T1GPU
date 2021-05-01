@@ -49,6 +49,11 @@ class PoligonoList {
         n->next = new_node;
     }
 
+    // Calculates the determinant given two Puntos.
+    numType edgeDet(Punto<numType> *lp, Punto<numType> *rp) {
+        return (rp->getX() - lp->getX()) * (rp->getY() + lp->getY());
+    }
+
     /*
     // Removes a node. If the node is the head, it declares its next node as the head.
     void removePunto(Node *n) {
@@ -92,11 +97,6 @@ public:
         size++;
     }
 
-    // Calculates the determinant given two Puntos.
-    numType edgeDet(Punto<numType> *lp, Punto<numType> *rp) {
-        return (rp->getX() - lp->getX()) * (rp->getY() + lp->getY());
-    }
-
     // Calculates the orientation determinant for the PoligonoList.
     numType orientationDet() {
         // Calculate for head edge first.
@@ -105,7 +105,7 @@ public:
 
         // Calculate for the rest of the edges.
         while (curr_node != head) {
-            result += edgeDet(curr_node, curr_node->next);
+            result += edgeDet(curr_node->p, curr_node->next->p);
             curr_node = curr_node->next;
         }
 
@@ -116,14 +116,14 @@ public:
 
 template <class numType>
 class Poligono {
-    PoligonoList<numType> poligono_list;
+    PoligonoList<numType> *poligono_list;
     numType orientationDet;
 
 public:
     // Constructor
-    Poligono(Punto<numType> *lp, Punto<numType> *mp, Punto<numType> *rp) {
-        poligono_list = PoligonoList<float>(lp, mp, rp);
-        orientationDet = poligono_list.orientationDet();
+    Poligono(Punto<numType> *lp, Punto<numType> *mp, Punto<numType> *rp) : poligono_list(nullptr) {
+        poligono_list = new PoligonoList<numType>(lp, mp, rp);
+        orientationDet = poligono_list->orientationDet();
     }
 
     // Destructor
@@ -133,15 +133,15 @@ public:
     }
 
     void addPunto(Punto<numType> *p) {
-        poligono_list.addPunto(p);
-        orientationDet = poligono_list.orientationDet();
+        poligono_list->addPunto(p);
+        orientationDet = poligono_list->orientationDet();
     }
 
     // Getter
     PoligonoList<numType> getList() { return poligono_list; }
 
     // Boolean if Poligono is clockwise or counterclockwise.
-    bool isCCW() { (orientationDet < 0) ? true : false; }
+    bool isCCW() { return (orientationDet < 0) ? true : false; }
 
     // Provides the area of the Poligono.
     numType area() { return abs(orientationDet)*0.5; }
