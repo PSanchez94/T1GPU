@@ -6,6 +6,6 @@ punto mostrando el Poligono y sus características calculadas.
 
 El proyecto fue hecho en CLion con CMake y MinGW. Adjunta esta la carpeta .idea de configuraciones de ejecución. Hay 2 ejecuciones, 
 la del main.cpp (T1GPU.exe) para interactuar con la definición del poligono. Y también una batería de test unitarios 
-simples en googletest validando las funcionalidades de Poligono y sus estructuras.
+simples en googletest validando las funcionalidades de Poligono y sus estructuras (GeometryTest.exe).
 
 
