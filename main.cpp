@@ -23,18 +23,32 @@ int main() {
     cout << "Enter X and Y values for the first 3 Puntos." << endl;
     cout << "Press enter when done." << endl;
 
-    cin >> *lp >> *mp >> *rp;
+    while (!(cin >> *lp)) {
+        cin.clear();
+        cin.ignore(40,'\n');
+        std::cout << "Invalid argument. Does not seem to be a number.\n";
+        std::cout << "Try to input a Punto again.\n";
+    }
+    while (!(cin >> *mp)) {
+        cin.clear();
+        cin.ignore(40,'\n');
+        std::cout << "Invalid argument. Does not seem to be a number.\n";
+        std::cout << "Try to input a Punto again.\n";
+    }
+    while (!(cin >> *rp)) {
+        cin.clear();
+        cin.ignore(40,'\n');
+        std::cout << "Invalid argument. Does not seem to be a number.\n";
+        std::cout << "Try to input a Punto again.\n";
+    }
 
     main_poligono = new Poligono<float>(lp, mp, rp);
     cout << *main_poligono;
 
-    cout << "Press enter to end the program or input X and Y values" << endl;
-    cout << "to append a Punto to the Poligono." << endl;
-
+    cout << "Endless loop." << endl;
     while (true) {
+        cout << "Enter X and Y values to append to the Poligono." << endl;
         cin >> *main_poligono;
         cout << *main_poligono;
     }
-
-    return 0;
 }

@@ -164,7 +164,14 @@ public:
     // cin operator
     friend std::istream &operator>>( std::istream  &input, Poligono<numType> &p ) {
         Punto<numType>* new_point = new Punto<numType>();
-        input >> *new_point;
+
+        while (!(input >> *new_point)) {
+            input.clear();
+            input.ignore(40,'\n');
+            std::cout << "Invalid argument. Does not seem to be a number.\n";
+            std::cout << "Try to input a Punto again.\n";
+        }
+
         p.addPunto(new_point);
         return input;
     }
